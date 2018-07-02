@@ -16,7 +16,7 @@ public class EjercicioCocina {
 //declaraciones de las clases
     private Cocina cocina;
     private JefeCocina jefeCocina;
-    private Ingrediente[] ingredientes;
+    private InventarioIngrediente[] ingredientes;
  //   private Ingrediente[] ingredientesReceta;
     private Cliente cliente;
     private Plato plato;
@@ -27,7 +27,7 @@ public class EjercicioCocina {
     
 
     public EjercicioCocina() {
-        this.ingredientes = new Ingrediente[NUMERO_INGREDIENTES];
+        this.ingredientes = new InventarioIngrediente[NUMERO_INGREDIENTES];
         this.listaRecetas = new Receta[2];
                
     }
@@ -62,10 +62,10 @@ public class EjercicioCocina {
     }
     
     public void crearIngrediente() {
-        Ingrediente iI1 = new Ingrediente();
-        Ingrediente iI2 = new Ingrediente();
-        Ingrediente iI3 = new Ingrediente();
-        Ingrediente iI4 = new Ingrediente();
+        Ingrediente iI1 = new InventarioIngrediente();
+        Ingrediente iI2 = new InventarioIngrediente();
+        Ingrediente iI3 = new InventarioIngrediente();
+        Ingrediente iI4 = new InventarioIngrediente();
         
         iI1.setCodigoIngrediente(1);
         iI1.setNombre("Arroz");
@@ -99,10 +99,10 @@ public class EjercicioCocina {
         iI4.setContable("No");
         iI4.setValor(40000);
         
-        ingredientes[0] = iI1;
-        ingredientes[1] = iI2;
-        ingredientes[2] = iI3;
-        ingredientes[3] = iI4;
+        ingredientes[0] = (InventarioIngrediente) iI1;
+        ingredientes[1] = (InventarioIngrediente) iI2;
+        ingredientes[2] = (InventarioIngrediente) iI3;
+        ingredientes[3] = (InventarioIngrediente) iI4;
           
         System.out.println("-----------Inventario Ingredientes-----------");
         
@@ -119,9 +119,9 @@ public class EjercicioCocina {
         recetat.setCodigoReceta("1");
         recetat.setNombre("Arroz con leche");
         
-        Ingrediente[] lista= new Ingrediente[2];
-        Ingrediente i1 = new Ingrediente();
-        Ingrediente i2 = new Ingrediente();
+        Ingrediente[] lista= new InventarioIngrediente[2];
+        Ingrediente i1 = new InventarioIngrediente();
+        Ingrediente i2 = new InventarioIngrediente();
         
         i1.setCodigoIngrediente(1);
         i1.setNombre("Arroz");
@@ -146,10 +146,10 @@ public class EjercicioCocina {
         recetat.setCodigoReceta("2");
         recetat.setNombre("Flan");
         
-        Ingrediente[] lista1= new Ingrediente[3];
-        Ingrediente r1 = new Ingrediente();
-        Ingrediente r2 = new Ingrediente();
-        Ingrediente r3 = new Ingrediente();
+        Ingrediente[] lista1= new InventarioIngrediente[3];
+        Ingrediente r1 = new InventarioIngrediente();
+        Ingrediente r2 = new InventarioIngrediente();
+        Ingrediente r3 = new InventarioIngrediente();
         
         r1.setCodigoIngrediente(1);
         r1.setNombre("Gelatina");
@@ -161,7 +161,7 @@ public class EjercicioCocina {
         r2.setCantidad(1);
         r2.setMedida("Litro");
         
-        r3.setCodigoIngrediente(2);
+        r3.setCodigoIngrediente(3);
         r3.setNombre("Huevos");
         r3.setCantidad(4);
         
@@ -198,7 +198,11 @@ public class EjercicioCocina {
         plato = new Plato();
         plato.setCodigoPlato(1);
         plato.setTipoPlato("Completo");
-                     
+        plato.setCodReceta("1");
+                
+        System.out.println("-----------Plato-----------");
+        System.out.println(plato);
+                      
     }
     
     public void crearPedido(){
@@ -209,13 +213,41 @@ public class EjercicioCocina {
         pedido.setValorPlato(3000);
         pedido.setValorTotal(3000.00);
         pedido.setSolicitud("Arroz con leche");
-        
+              
+        System.out.println("-----------Pedido-----------");
+        System.out.println(pedido);
+           
     }
     
-    public void validarIngredientesReceta(){
-        
-        
-    }
+   public boolean validarIngredientesReceta(String codReceta){
+        //Obtener receta y lista de ingredientes
+        Receta r = new Receta();
+        for (int i=0;i<listaRecetas.length; i++){
+            if (codReceta.equals(listaRecetas[i].getCodigoReceta())){
+                r = listaRecetas[i];
+            }
+        }
+        //Comprobar existencias
+        Ingrediente [] listaIngredientes = r.getListaIngredientes();
+        boolean posible = true;
+        for (int i = 0;i<listaIngredientes.length;i++){
+            if (!hayExistenciasDeIngrediente(listaIngredientes[i].nombre)){
+               posible = false;
+               break;
+            }
+        }
+        return posible;
+   }
+   
+   private boolean hayExistenciasDeIngrediente(String nombreIngrediente){
+       for (int i = 0;i<ingredientes.length;i++){
+           if (nombreIngrediente==ingredientes[i].nombre){
+               return true;
+           }
+       } 
+       return false;
+   }
+    
     
     
     public static void main(String[] args) {
@@ -228,10 +260,12 @@ public class EjercicioCocina {
         main.crearReceta();
         main.crearPlato();
         main.crearPedido();
-        main.validarIngredientesReceta();
         
-       
-        
+        if(main.validarIngredientesReceta("1")){
+            System.out.println("El pedido será despachado. Hay ingredientes en el inventario para hacer la receta.");
+        }else{
+            System.out.println("El pedido no será despachado. No hay ingredientes en el inventario para hacer la receta.");
+        }
     }
 
 }
