@@ -16,6 +16,15 @@ public class Pedido {
     private int valorPlato;
     private double valorTotal;
     private String solicitud;
+    private Plato plato;
+
+    public Plato getPlato() {
+        return plato;
+    }
+
+    public void setPlato(Plato plato) {
+        this.plato = plato;
+    }
 
     public String getSolicitud() {
         return solicitud;
@@ -82,7 +91,11 @@ public class Pedido {
                "Valor plato: " + valorPlato + "\n" +
                "Valor total: " +valorTotal +"\n"+
                "Descripción: " +solicitud +"\n";
+               
     }
+
     
+
+       
     
 }
