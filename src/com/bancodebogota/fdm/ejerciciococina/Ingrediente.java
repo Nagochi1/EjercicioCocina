@@ -9,39 +9,12 @@ package com.bancodebogota.fdm.ejerciciococina;
  *
  * @author NAGOCHI
  */
-public class Ingrediente {
-    private int codigoIngrediente;
-    private String nombre;
-    private int cantidad;
-    private String medida;
-    private String estado;
-    private String contable;
-    private int valor;
-
-    public int getValor() {
-        return valor;
-    }
-
-    public void setValor(int valor) {
-        this.valor = valor;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getContable() {
-        return contable;
-    }
-
-    public void setContable(String contable) {
-        this.contable = contable;
-    }
-
+public abstract class Ingrediente {
+    protected int codigoIngrediente;
+    protected String nombre;
+    protected int cantidad;
+    protected String medida;
+    
     public String getMedida() {
         return medida;
     }
@@ -86,22 +59,17 @@ public class Ingrediente {
         this.cantidad = cantidad;
     }
 
-    @Override
-    public String toString() {
-        return "Codigo ingrediente: " + codigoIngrediente + "\n" +
-               "Nombre: " + nombre + "\n" +
-               "Cantidad: " + cantidad + "\n" +
-               "Unidad medida: " + medida + "\n" +
-               "Estado: " +estado +"\n" +
-               "Contable: " + contable+ "\n" +
-               "Valor: " +valor + "\n";
+    void setEstado(String sólido) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
-      
-    
-    
-    
-    
-    
+    void setContable(String no) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setValor(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+   
+   
 }
