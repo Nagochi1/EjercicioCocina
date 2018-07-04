@@ -12,15 +12,16 @@ package com.bancodebogota.fdm.ejerciciococina;
 public class Plato {
     private int codigoPlato;
     private String tipoPlato;
-    private String receta;
+    protected String codReceta;
 
-    public String getReceta() {
-        return receta;
+    public String getCodReceta() {
+        return codReceta;
     }
 
-    public void setReceta(String receta) {
-        this.receta = receta;
+    public void setCodReceta(String codReceta) {
+        this.codReceta = codReceta;
     }
+
 
     public int getCodigoPlato() {
         return codigoPlato;
@@ -42,7 +43,7 @@ public class Plato {
     public String toString() {
         return "Codigo Plato: " + codigoPlato + "\n" +
                "Tipo plato: " + tipoPlato + "\n"+
-               "Código receta: " + receta + "\n" ;
+               "Código receta: " + codReceta + "\n";
     }
     
     

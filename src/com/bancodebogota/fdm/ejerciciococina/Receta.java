@@ -10,6 +10,7 @@ package com.bancodebogota.fdm.ejerciciococina;
  * @author NAGOCHI
  */
 public class Receta{
+
     private String codigoReceta;
     private String nombre;
     private Ingrediente[] listaIngredientes;
