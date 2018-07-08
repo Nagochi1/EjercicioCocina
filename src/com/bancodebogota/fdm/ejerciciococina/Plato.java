@@ -12,7 +12,7 @@ package com.bancodebogota.fdm.ejerciciococina;
 public class Plato {
     private int codigoPlato;
     private String tipoPlato;
-    protected String codReceta;
+    private String codReceta;
 
     public String getCodReceta() {
         return codReceta;
